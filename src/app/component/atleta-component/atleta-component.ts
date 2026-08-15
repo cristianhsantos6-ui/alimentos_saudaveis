@@ -1,0 +1,67 @@
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-atleta-component',
+  imports: [FormsModule, CommonModule],
+  templateUrl: './atleta-component.html',
+  styleUrl: './atleta-component.css',
+})
+export class AtletaComponent {
+  nome:string = ''
+  data: string = ''
+  cpf: number = 0
+  cep: string = ''
+  uf: string = ''
+  bairro: string = ''
+}
+
+constructor(private clienteService: ClientesService) {}
+
+  ExibirDads() {
+    console.log(
+      this.nome,
+      this.data,
+      this.cpf,
+      this.sexo,
+      this.cep,
+      this.uf,
+      this.cidade,
+      this.bairro,
+    );
+
+    this.limparDados();
+  }
+
+  limparDados() {
+    this.nome = '';
+    this.data = '';
+    this.cpf = 0;
+    this.sexo = '';
+    this.cep = '';
+    this.uf = '';
+    this.cidade = '';
+    this.bairro = '';
+  }
+
+  salvar() {
+    const cliente = new Cliente();
+
+    cliente.nome = this.nome;
+    cliente.data = this.data;
+    cliente.sexo = this.sexo;
+    cliente.cpf = this.cpf;
+    cliente.cep = this.cep;
+    cliente.uf = this.uf;
+    cliente.cidade = this.cidade;
+    cliente.bairro = this.bairro;
+
+    this.clienteService.adicionar(cliente);
+
+    this.limparDados();
+
+    this.clienteService.Listar();
+  }
+
+
