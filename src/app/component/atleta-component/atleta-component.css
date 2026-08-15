@@ -1,4 +1,4 @@
-#form{
+#form {
     width: 1000px;
     min-height: 600px;
     margin: 20px auto;
@@ -6,60 +6,104 @@
     color: var(--cor-primaria);
 }
 
-h2{
+h2 {
     margin: 30px 0px;
     text-transform: uppercase;
 }
 
-#form-atleta{
+#atleta {
     width: 100%;
     min-height: 600px;
 }
 
-label{
+label {
     display: block;
-    padding: 20px 0px;
+    padding: 20px 0px 5px 0px;
 }
 
-input{
+input {
     height: 30px;
     padding: 20px;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
-.input01{
+.input01 {
     width: 900px;
 }
 
-.input02{
+.input02 {
     width: 400px;
 }
 
-input [type=radio]{
-   width: 35px;
-   height: 35px;
-   margin-right: 0px 15px;
+/* Alinhamento dos Radio Buttons */
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
-#div-btns{
+.radio-group label {
+    display: inline;
+    padding: 0;
+    margin-right: 15px;
+}
+
+input[type=radio] {
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    cursor: pointer;
+}
+
+#div-btns {
     width: 100%;
-    height: 150px;
+    height: 100px;
     margin: 25px 0px;
+    display: flex;
+    align-items: center;
 }
 
-button{
+button {
     width: 180px;
     height: 40px;
     cursor: pointer;
     border: none;
+    font-weight: bold;
 }
 
-#btnAdd{
-    background-color: var(--botao01);
+#btnAdd {
+    background-color: var(--botao01, #28a745);
+    color: white;
     margin-right: 20px;
 }
 
-#btnLimpar{
-    background-color: var(--botao02);
-    margin-left: 20px;
+#btnLimpar {
+    background-color: var(--botao02, #dc3545);
+    color: white;
 }
+
+/* Tabela de Listagem */
+#lista {
+    width: 1000px;
+    margin: 40px auto;
+}
+
+#lista table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#lista th, #lista td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+#lista th {
+    background-color: var(--cor-primaria, #333);
+    color: white;
+}
+

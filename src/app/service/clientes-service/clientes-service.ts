@@ -5,26 +5,31 @@ import { Clientes } from '../../modelos/clientes/clientes';
   providedIn: 'root',
 })
 export class ClientesService {
-  private clientes: Clientes[] = [];
+  // Alterado para public para permitir acesso direto na interface do Angular
+  public clientes: Clientes[] = [];
 
-  adicionar(clientes: Clientes) {
-    clientes.id = this.clientes.length + 1;
-    this.clientes.push(clientes);
+  adicionar(cliente: Clientes) {
+    cliente.id = this.clientes.length + 1;
+    this.clientes.push(cliente);
   }
 
   Listar() {
     console.table(this.clientes);
-
     return this.clientes;
   }
 
   Remover(id: number) {
-    this.clientes = this.clientes.filter((elem) => elem.id !== elem.id);
+    // Compara o ID do item com o ID passado por parâmetro
+    this.clientes = this.clientes.filter((elem) => elem.id !== id);
   }
 
-  Alterar(clientes: Clientes) {
-    let pos = this.clientes.findIndex((elem) => elem.id !== clientes.id);
-    this.clientes[pos] = clientes;
+  Alterar(cliente: Clientes) {
+    // Busca a posição do item que possui o mesmo ID
+    let pos = this.clientes.findIndex((elem) => elem.id === cliente.id);
+    
+    if (pos !== -1) {
+      this.clientes[pos] = cliente;
+    }
   }
 }
 

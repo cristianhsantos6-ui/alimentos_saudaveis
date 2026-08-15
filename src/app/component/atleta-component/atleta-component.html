@@ -1,44 +1,70 @@
 <section id="form">
-    <h2>Cadastro de Atleta </h2>
-    <form action="" id="atleta">
+    <h2>Cadastro de Atleta</h2>
+    <form id="atleta">
         <label for="nome">Nome Completo</label>
-        <input type="text" nome="nome" id="nome" class="input01"
-        maxlength="60" required placeholder="Digite o nome Completo">
-        
+        <input type="text" name="nome" id="nome" class="input01" [(ngModel)]="nome" placeholder="Digite o nome Completo">
+       
         <label for="cpf">CPF</label>
-        <input type="text" nome="cpf" id="cpf" class="input02"
-        maxlength="14" required  placeholder="Digite o seu CPF">
-        
+        <input type="text" name="cpf" id="cpf" class="input02" [(ngModel)]="cpf" placeholder="Digite o seu CPF">
 
-        <label for="sexo">Sexo</label>
-<input type="radio" name="sexo" id="sexoM" class="radio01" required value="M"> Masculino
-<input type="radio" name="sexo" id="sexoF" class="radio01" required value="F"> Feminino
-<input type="radio" name="sexo" id="sexoN" class="radio01" required value="N"> Não Declarar
+        <label>Sexo</label>
+        <div class="radio-group">
+            <input type="radio" name="sexo" id="sexoM" value="M" [(ngModel)]="sexo">
+            <label for="sexoM">Masculino</label>
 
-        <label for="cep"></label>
-        <input type="text" nome="cep" id="cep" class="input02"
-        maxlength="9" required placeholder="Digite o seu cep ">
-    
+            <input type="radio" name="sexo" id="sexoF" value="F" [(ngModel)]="sexo">
+            <label for="sexoF">Feminino</label>
 
-    <label for="rua-logradouro">Rua/Logradoura</label>
-    <input type="text" nome="rua-logradouro" id="rua-logradouro" class="input01"
-    maxlength="60" required placeholder="Digite a Rua ou Logradouro ">
+            <input type="radio" name="sexo" id="sexoN" value="N" [(ngModel)]="sexo">
+            <label for="sexoN">Não Declarar</label>
+        </div>
 
+        <label for="cep">CEP</label>
+        <input type="text" name="cep" id="cep" class="input02" [(ngModel)]="cep" placeholder="Digite o seu CEP">
 
-<label for="Bairro">Bairro</label>
-<input type="text" nome="Bairro" id="Bairro" class="input02"
-maxlength="60" required placeholder="Digite o Bairro ">
+        <label for="rua-logradouro">Rua/Logradouro</label>
+        <input type="text" name="ruaLogradouro" id="rua-logradouro" class="input01" [(ngModel)]="ruaLogradouro" placeholder="Digite a Rua ou Logradouro">
 
+        <label for="Bairro">Bairro</label>
+        <input type="text" name="bairro" id="Bairro" class="input02" [(ngModel)]="bairro" placeholder="Digite o Bairro">
 
-<label for="cidade">Cidade</label>
-        <input type="text" nome="cidade" id="cidade" class="input02"
-        maxlength="60" required placeholder="Digite a sua cidade ">
+        <label for="cidade">Cidade</label>
+        <input type="text" name="cidade" id="cidade" class="input02" [(ngModel)]="cidade" placeholder="Digite a sua cidade">
 
-<div id="div-btns">
-    <button type="submit" id="btnAdd"> Cadastrar </button>
-    <button type="reset" id="btnLimpar"> Limpar </button>
-</div>
-
-
+        <div id="div-btns">
+            <button type="button" id="btnAdd" (click)="salvar()"> Cadastrar </button>
+            <button type="button" id="btnLimpar" (click)="limparDados()"> Limpar </button>
+        </div>
     </form>
 </section>
+
+<hr>
+
+<section id="lista">
+    <h2>Atletas Cadastrados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Sexo</th>
+                <th>CEP</th>
+                <th>Rua/Logradouro</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of clienteService.clientes">
+                <td>{{ item.nome }}</td>
+                <td>{{ item.cpf }}</td>
+                <td>{{ item.sexo }}</td>
+                <td>{{ item.cep }}</td>
+                <td>{{ item.ruaLogradouro}}</td>
+                <td>{{ item.bairro }}</td>
+                <td>{{ item.cidade }}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+

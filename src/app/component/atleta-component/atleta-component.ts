@@ -1,67 +1,50 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ClientesService } from '../../service/clientes-service/clientes-service';
+import { Clientes } from '../../modelos/clientes/clientes';
 
 @Component({
-  selector: 'app-atleta-component',
-  imports: [FormsModule, CommonModule],
+  selector: 'app-atleta',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './atleta-component.html',
-  styleUrl: './atleta-component.css',
+  styleUrl: './atleta-component.css'
 })
 export class AtletaComponent {
-  nome:string = ''
-  data: string = ''
-  cpf: number = 0
-  cep: string = ''
-  uf: string = ''
-  bairro: string = ''
-}
+  nome: string = '';
+  cpf: number | string = '';
+  sexo: string = '';
+  cep: string = '';
+  ruaLogradouro: string = '';
+  bairro: string = '';
+  cidade: string = '';
 
-constructor(private clienteService: ClientesService) {}
+  constructor(public clienteService: ClientesService) {}
 
-  ExibirDads() {
-    console.log(
-      this.nome,
-      this.data,
-      this.cpf,
-      this.sexo,
-      this.cep,
-      this.uf,
-      this.cidade,
-      this.bairro,
-    );
+  salvar() {
+    const novoAtleta: Clientes = {
+      nome: this.nome,
+      cpf: Number(this.cpf),
+      sexo: this.sexo,
+      cep: this.cep,
+      ruaLogradouro: this.ruaLogradouro, // <-- Faltava incluir esta linha aqui!
+      cidade: this.cidade,
+      bairro: this.bairro
+    };
 
+    this.clienteService.adicionar(novoAtleta);
     this.limparDados();
   }
 
   limparDados() {
     this.nome = '';
-    this.data = '';
-    this.cpf = 0;
+    this.cpf = '';
     this.sexo = '';
     this.cep = '';
-    this.uf = '';
-    this.cidade = '';
+    this.ruaLogradouro = '';
     this.bairro = '';
+    this.cidade = '';
   }
-
-  salvar() {
-    const cliente = new Cliente();
-
-    cliente.nome = this.nome;
-    cliente.data = this.data;
-    cliente.sexo = this.sexo;
-    cliente.cpf = this.cpf;
-    cliente.cep = this.cep;
-    cliente.uf = this.uf;
-    cliente.cidade = this.cidade;
-    cliente.bairro = this.bairro;
-
-    this.clienteService.adicionar(cliente);
-
-    this.limparDados();
-
-    this.clienteService.Listar();
-  }
-
+}
 
